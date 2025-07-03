@@ -90,7 +90,7 @@ hidden_size = 64
 num_layers = 2
 output_size = 1
 learning_rate = 0.001
-num_epochs = 20
+num_epochs = 30
 
 # Initialisiere LSTM Modell
 lstm_model = LSTMModel(input_size, hidden_size, num_layers, output_size).to(device)
@@ -186,6 +186,7 @@ def visualize_predictions(sample_idx, X_test, y_test, lstm_pred, rf_pred, save_p
     
     plt.xlabel('Time')
     plt.ylabel('Amplitude')
+    plt.ylim(-20,20)
     
     # Vorhersagen plotten
     plt.subplot(3, 1, 2)
@@ -194,6 +195,8 @@ def visualize_predictions(sample_idx, X_test, y_test, lstm_pred, rf_pred, save_p
             color=['blue', 'green'])
     plt.ylim(0, 1)
     plt.ylabel('Probability')
+    if y_test[idx]:
+        plt.text(0.1, 0.2, r"$\textbf{Anomaly!!!}$", fontsize=26, color='red', fontweight='bold')
     
     plt.subplot(3, 1, 3)
     plt.bar(['LSTM', 'Random Forest'], 
@@ -211,12 +214,12 @@ def visualize_predictions(sample_idx, X_test, y_test, lstm_pred, rf_pred, save_p
 
 lstm_model.eval()
 with torch.no_grad():
-    lstm_probs = lstm_model(X_test_lstm.to(device)).cpu().numpy().squeeze()
+    lstm_probs = lstm_model(X_train_lstm.to(device)).cpu().numpy().squeeze()
 
-rf_probs = rf_model.predict_proba(X_test_rf)[:, 1]
+rf_probs = rf_model.predict_proba(X_train_rf)[:, 1]
 
-sample_indices = np.random.choice(len(X_test), size=50, replace=False)
+sample_indices = np.random.choice(len(X_train), size=50, replace=False)
 
 for i, idx in enumerate(tqdm(sample_indices)):
     save_path = f'pred_maintenance_frames/frame_{i:03d}.png'
-    visualize_predictions(idx, X_test, y_test, lstm_probs, rf_probs, save_path)
+    visualize_predictions(idx, X_train, y_train, lstm_probs, rf_probs, save_path)
