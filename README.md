@@ -4,7 +4,7 @@
 This project focuses on developing a predictive maintenance framework using synthetic sensor data to simulate real-world machinery monitoring scenarios. It explores the use of a deep learning approach, specifically an LSTM (Long Short-Term Memory) neural network, to model temporal dependencies in multivariate time-series sensor data. In parallel, a classical machine learning method, the Random Forest classifier, is applied on engineered statistical features extracted from the time series, such as mean, standard deviation, minimum, and maximum values. By comparing these two modeling strategies, the project demonstrates the effectiveness of sequence-based deep learning versus feature-based traditional methods for binary classification tasks related to predicting machine failures or maintenance needs. The pipeline includes data generation, preprocessing, model training, evaluation with multiple metrics, and detailed visualization of both the training process and prediction outcomes. This end-to-end approach highlights the strengths and trade-offs of each method in predictive maintenance applications, aiming to provide insights into selecting suitable models for real-time sensor data analytics.
 
 <p align="center">
-  <img src="animation.gif" width="600" height="600" alt="til">
+  <img src="animation_1.gif" width="600" height="600" alt="til">
 </p>
 
 ---
