@@ -32,8 +32,8 @@ This project focuses on developing a predictive maintenance framework using synt
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Diyarino/predictive-maintenance-with-lstm-and-random-forest.git
+cd predictive-maintenance-with-lstm-and-random-forest
 ```
 
 2. (Optional) Create and activate a virtual environment:
